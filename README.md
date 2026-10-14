@@ -36,6 +36,10 @@ An author's role, contribution and tools are stored inside that project's `autho
 Category filtering, Project Details, Project Team, Student Profiles, Back navigation,
 an image gallery and layouts for computers, tablets and phones.
 
+## Language
+
+Use the header selector to switch between Armenian and English. The choice is saved in the browser. Routes, category filters and project IDs stay the same. Armenian is the default on a first visit. Sample content translations are in script.js; future real content needs translations supplied by its authors or backend.
+
 ## Backend later
 
 Backend, database, login and project submission are not included.

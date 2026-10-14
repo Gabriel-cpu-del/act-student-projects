@@ -303,6 +303,155 @@ const categories = [
 ];
 
 // Page rendering, filtering and navigation.
+// Interface and sample content translations. Data IDs and routes stay unchanged.
+const armenianText = {
+  'Student Projects': 'Ուսանողների նախագծեր',
+  'ACT · Student Projects': 'ACT · Ուսանողների նախագծեր',
+  'Student work. Shared ideas.': 'Ուսանողների աշխատանքներ։ Համատեղ գաղափարներ։',
+  'Skip to content': 'Անցնել բովանդակությանը',
+  'Made by ACT students': 'Ստեղծված է ACT-ի ուսանողների կողմից',
+  'Real Projects. Real Students.': 'Իրական նախագծեր։ Իրական ուսանողներ։',
+  'Explore the creativity and innovation of ACT students.': 'Բացահայտեք ACT-ի ուսանողների ստեղծարարությունն ու նորարարությունը։',
+  'All': 'Բոլորը',
+  'Computer Science': 'Համակարգչային գիտություն',
+  'Digital Art': 'Թվային արվեստ',
+  'Engineering and Manufacturing': 'Ինժեներիա և արտադրություն',
+  'View Details': 'Մանրամասներ',
+  'View Profile': 'Դիտել պրոֆիլը',
+  'Back': 'Հետ',
+  'About the project': 'Նախագծի մասին',
+  'Project Team': 'Նախագծի թիմը',
+  'Project Links': 'Նախագծի հղումները',
+  'Tools used by this contributor': 'Մասնակցի օգտագործած գործիքները',
+  'Faculty': 'Ֆակուլտետ',
+  'Course': 'Կուրս',
+  'First Year': 'Առաջին կուրս',
+  'Second Year': 'Երկրորդ կուրս',
+  'Third Year': 'Երրորդ կուրս',
+  'Fourth Year': 'Չորրորդ կուրս',
+  'My Projects': 'Իմ նախագծերը',
+  'No public links added yet.': 'Հրապարակային հղումներ դեռ չկան։',
+  'No published projects yet.': 'Հրապարակված նախագծեր դեռ չկան։',
+  'No projects in this category yet.': 'Այս կատեգորիայում նախագծեր դեռ չկան։',
+  'Page not found': 'Էջը չի գտնվել',
+  'This project or student is unavailable.': 'Այս նախագիծը կամ ուսանողի պրոֆիլը հասանելի չէ։',
+  'Browse Projects →': 'Դիտել նախագծերը →',
+  'Student projects': 'Ուսանողների նախագծեր',
+  'Student project': 'Ուսանողական նախագիծ',
+  'Filter by category': 'Զտել ըստ կատեգորիայի',
+  'Project team and links': 'Նախագծի թիմը և հղումները',
+  'Project images': 'Նախագծի պատկերներ',
+  'Project images. Use left and right arrow keys to browse.': 'Նախագծի պատկերներ։ Թերթելու համար օգտագործեք ձախ և աջ սլաքները։',
+  'Previous image': 'Նախորդ պատկերը',
+  'Next image': 'Հաջորդ պատկերը',
+  'carousel': 'պատկերների պատկերասրահ',
+  'slide': 'պատկեր',
+  'Aram Petrosyan': 'Արամ Պետրոսյան',
+  'Ani Harutyunyan': 'Անի Հարությունյան',
+  'Davit Sargsyan': 'Դավիթ Սարգսյան',
+  'Aram Khachatryan': 'Արամ Խաչատրյան',
+  'AP': 'ԱՊ', 'AH': 'ԱՀ', 'DS': 'ԴՍ', 'AK': 'ԱԽ',
+  'Campus Companion': 'Քոլեջի ուղեկից',
+  'Type in Motion': 'Տառերը շարժման մեջ',
+  'Modular Systems': 'Մոդուլային համակարգեր',
+  'Sound to Signal': 'Ձայնից ազդանշան',
+  'Shift Perspective': 'Տեսանկյան փոփոխություն',
+  'Energy Grid': 'Էներգետիկ ցանց',
+  'ACT Creative Platform': 'ACT ստեղծարար հարթակ',
+  'Interested in web development, audio experiments and making everyday campus life easier.': 'Հետաքրքրված եմ վեբ մշակմամբ, ձայնային փորձարկումներով և քոլեջի առօրյան ավելի հարմար դարձնելով։',
+  'Exploring typography, visual storytelling and thoughtful interfaces for creative communities.': 'Ուսումնասիրում եմ տպագրական ձևավորումը, տեսողական պատմությունները և ստեղծարար համայնքների համար հարմար միջերեսները։',
+  'Enjoys building modular prototypes and exploring practical uses for sensors and electronics.': 'Սիրում եմ կառուցել մոդուլային նախատիպեր և ուսումնասիրել սենսորների ու էլեկտրոնիկայի գործնական կիրառությունները։',
+  'Interested in frontend development, web technologies and building useful digital products.': 'Հետաքրքրված եմ frontend մշակմամբ, վեբ տեխնոլոգիաներով և օգտակար թվային արտադրանքների ստեղծմամբ։',
+  'A simpler way to plan your day on campus.': 'Քոլեջում ձեր օրը պլանավորելու ավելի պարզ միջոց։',
+  'An exploration of letters, rhythm and visual expression.': 'Տառերի, ռիթմի և տեսողական արտահայտչության ուսումնասիրություն։',
+  'Small modules. A smarter approach to building.': 'Փոքր մոդուլներ։ Կառուցման ավելի արդյունավետ մոտեցում։',
+  'Turning everyday audio into visible patterns.': 'Առօրյա ձայների վերածումը տեսանելի պատկերների։',
+  'A visual identity that sees things a little differently.': 'Տեսողական ինքնություն՝ իրերին այլ տեսանկյունից նայելու համար։',
+  'Exploring more efficient ways to share energy.': 'Էներգիայի բաշխման ավելի արդյունավետ եղանակների ուսումնասիրություն։',
+  'A shared space for student creativity, built across disciplines.': 'Ուսանողների ստեղծարարության ընդհանուր հարթակ՝ տարբեր մասնագիտությունների համագործակցությամբ։',
+  'Campus Companion is a student-built interface for organizing classes, deadlines and study sessions. The project explores how a clear layout and small, thoughtful interactions can make a busy college day easier to navigate.': 'Քոլեջի ուղեկիցը ուսանողի ստեղծած միջերես է՝ դասերը, վերջնաժամկետները և ուսումնական աշխատանքը կազմակերպելու համար։ Նախագիծն ուսումնասիրում է, թե ինչպես կարող են պարզ կառուցվածքն ու հարմար փոխազդեցությունները հեշտացնել քոլեջի հագեցած առօրյան։',
+  'Type in Motion explores Armenian-inspired typographic rhythms through an experimental poster series. Each composition studies the relationship between solid and outlined letterforms, negative space and movement.': 'Տառերը շարժման մեջ նախագիծը փորձարարական պաստառների շարքի միջոցով ուսումնասիրում է հայկական տառատեսակներից ներշնչված ռիթմերը։ Յուրաքանչյուր կոմպոզիցիա բացահայտում է հոծ և ուրվագծային տառերի, ազատ տարածության ու շարժման կապը։',
+  'Modular Systems investigates how reusable components can simplify the design of classroom engineering kits. The student developed connection diagrams and a prototype assembly plan, comparing different arrangements for clarity and ease of use.': 'Մոդուլային համակարգեր նախագիծն ուսումնասիրում է, թե ինչպես կարող են բազմակի օգտագործման բաղադրիչները պարզեցնել ուսումնական ինժեներական հավաքածուների նախագծումը։ Ուսանողը մշակել է միացումների սխեմաներ և նախատիպի հավաքման պլան՝ համեմատելով տարբեր կառուցվածքների հստակությունն ու օգտագործման հարմարավետությունը։',
+  'Sound to Signal is an experiment in audio visualization. It maps changes in audio frequency to a responsive bar display, helping students understand how digital signals can be represented through simple visual patterns.': 'Ձայնից ազդանշան նախագիծը ձայնի տեսողական ներկայացման փորձարկում է։ Այն ձայնային հաճախականության փոփոխությունները ներկայացնում է փոփոխվող սյունակներով՝ օգնելով ուսանողներին հասկանալ թվային ազդանշանների ներկայացումը պարզ տեսողական պատկերներով։',
+  'Shift Perspective is a fictional visual identity for a student creative exhibition. It uses layered typography and a warm, limited palette to explore depth, repetition and the energy of collaborative work.': 'Տեսանկյան փոփոխությունը ուսանողական ստեղծարար ցուցահանդեսի համար նախատեսված օրինակային տեսողական ինքնություն է։ Այն օգտագործում է շերտավորված տառային ձևավորում և սահմանափակ տաք գունապնակ՝ ուսումնասիրելու խորությունը, կրկնությունն ու համատեղ աշխատանքի էներգիան։',
+  'Energy Grid is a classroom study of small-scale energy distribution. The project compares module layouts and presents readings as a simple grid, making energy flow easier to explain and discuss.': 'Էներգետիկ ցանցը փոքր մասշտաբի էներգաբաշխման ուսումնական ուսումնասիրություն է։ Նախագիծը համեմատում է մոդուլների դասավորությունները և չափումները ներկայացնում պարզ ցանցով՝ հեշտացնելով էներգիայի հոսքի բացատրությունն ու քննարկումը։',
+  'ACT Creative Platform is a collaborative concept for showcasing student work. Aram translated the interface into responsive pages and interactive project browsing, while Ani shaped the visual experience. Together they explored how computer science and digital art can make creative work easier to discover.': 'ACT ստեղծարար հարթակը ուսանողների աշխատանքները ներկայացնելու համատեղ գաղափար է։ Արամը մշակել է հարմարվող էջերն ու նախագծերի դիտման գործառույթները, իսկ Անին ձևավորել է տեսողական լուծումները։ Նրանք միասին ուսումնասիրել են, թե ինչպես կարող են համակարգչային գիտությունն ու թվային արվեստը հեշտացնել ստեղծարար աշխատանքների բացահայտումը։',
+  'Frontend development': 'Frontend մշակում',
+  'Typography and visual design': 'Տառային և տեսողական ձևավորում',
+  'Engineering and prototyping': 'Ինժեներիա և նախատիպերի ստեղծում',
+  'Audio visualization development': 'Ձայնի տեսողական ներկայացման մշակում',
+  'Visual identity design': 'Տեսողական ինքնության ձևավորում',
+  'Circuit design and analysis': 'Էլեկտրական սխեմաների նախագծում և վերլուծություն',
+  'Frontend developer': 'Frontend մշակող',
+  'UI/UX and visual designer': 'UI/UX և տեսողական դիզայներ',
+  'Designed the class planner interface and developed its navigation and JavaScript interactions.': 'Նախագծել է դասերի պլանավորման միջերեսը, մշակել նավարկումը և JavaScript փոխազդեցությունները։',
+  'Created the poster compositions, letterform studies and visual rhythm of the series.': 'Ստեղծել է պաստառների կոմպոզիցիաները, տառային ուսումնասիրությունները և շարքի տեսողական ռիթմը։',
+  'Designed the component connections and developed the prototype assembly plan.': 'Նախագծել է բաղադրիչների միացումները և մշակել նախատիպի հավաքման պլանը։',
+  'Developed the audio frequency mapping and responsive visualization experiments.': 'Մշակել է ձայնային հաճախականությունների ներկայացումը և փոփոխվող տեսողական փորձարկումները։',
+  'Created the layered typography, exhibition identity and interface assets.': 'Ստեղծել է շերտավորված տառային ձևավորումը, ցուցահանդեսի ինքնությունը և միջերեսի նյութերը։',
+  'Developed the module layouts, sensor prototype and energy reading diagrams.': 'Մշակել է մոդուլների դասավորությունները, սենսորի նախատիպը և էներգիայի չափումների գծապատկերները։',
+  'Developed the frontend functionality, page navigation, category filtering and JavaScript interactions.': 'Մշակել է frontend գործառույթները, էջերի նավարկումը, կատեգորիաների զտումը և JavaScript փոխազդեցությունները։',
+  'Created the UI/UX concept, visual hierarchy, project card design and interface assets.': 'Ստեղծել է UI/UX գաղափարը, տեսողական հիերարխիան, նախագծերի քարտերի դիզայնը և միջերեսի նյութերը։',
+  'Typography': 'Տառային ձևավորում', 'Prototyping': 'Նախատիպերի ստեղծում',
+  'Sensors': 'Սենսորներ', 'Brand Design': 'Բրենդի դիզայն', 'Circuit Design': 'Էլեկտրական սխեմաների նախագծում',
+  'Illustration of a campus planner interface': 'Քոլեջի պլանավորման միջերեսի նկարազարդում',
+  'Abstract shapes illustrating a visual design project': 'Տեսողական դիզայնի նախագիծ ներկայացնող վերացական պատկերներ',
+  'Illustration used as a placeholder for an engineering project': 'Ինժեներական նախագծի օրինակային նկարազարդում',
+  'Abstract visual placeholder for an audio visualization project': 'Ձայնի տեսողական ներկայացման նախագծի օրինակային պատկեր',
+  'Colorful abstract placeholder for a visual identity project': 'Տեսողական ինքնության նախագծի գունավոր օրինակային պատկեր',
+  'Engineering illustration used as a placeholder for Energy Grid': 'Էներգետիկ ցանցի օրինակային ինժեներական նկարազարդում',
+  'Illustration of a collaborative student platform': 'Ուսանողական համատեղ հարթակի նկարազարդում',
+  'Abstract design illustration for the collaborative platform': 'Համատեղ հարթակի դիզայնի վերացական նկարազարդում',
+  'Task checklist illustration for the collaborative platform': 'Համատեղ հարթակի առաջադրանքների ցանկի նկարազարդում'
+};
+
+let language = 'hy';
+try {
+  const saved = localStorage.getItem('actLanguage');
+  if (saved === 'en' || saved === 'hy') language = saved;
+} catch { /* The switch also works when browser storage is unavailable. */ }
+
+function translated(value) {
+  if (language === 'en') return value;
+  const original = value.trim();
+  const text = original.replace(/\s+/g, ' ');
+  let result = armenianText[text];
+  if (result === undefined) {
+    if (/^Created \d{4}$/.test(text)) result = text.replace('Created', 'Ստեղծվել է');
+    else if (/^\d+ projects?$/.test(text)) result = text.replace(/projects?$/, 'նախագիծ');
+    else if (/^Image \d+ of \d+$/.test(text)) result = text.replace(/^Image (\d+) of (\d+)$/, 'Պատկեր $1՝ $2-ից');
+    else if (text.startsWith('Open ')) result = 'Բացել ' + (armenianText[text.slice(5)] || text.slice(5));
+    else if (text.endsWith(' · ACT Student Projects')) result = (armenianText[text.slice(0, -' · ACT Student Projects'.length)] || text.slice(0, -' · ACT Student Projects'.length)) + ' · ACT Ուսանողների նախագծեր';
+    else if (text === 'Page not found · ACT') result = 'Էջը չի գտնվել · ACT';
+    else if (text.endsWith(' (opens in a new tab)')) result = text.replace(' (opens in a new tab)', ' (բացվում է նոր ներդիրում)');
+    else if (text === 'Student Projects · ACT') result = 'Ուսանողների նախագծեր · ACT';
+    else result = text;
+  }
+  return result === text ? value : value.replace(original, result);
+}
+
+function applyLanguage() {
+  document.documentElement.lang = language;
+  document.querySelector('#language-select').value = language;
+  document.querySelectorAll('[data-translation]').forEach(element => {
+    element.textContent = translated(element.dataset.translation);
+  });
+  const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node = walker.nextNode())) {
+    if (node.nodeValue.trim()) node.nodeValue = translated(node.nodeValue);
+  }
+  main.querySelectorAll('[aria-label], [alt], [aria-roledescription]').forEach(element => {
+    for (const attribute of ['aria-label', 'alt', 'aria-roledescription']) {
+      if (element.hasAttribute(attribute)) element.setAttribute(attribute, translated(element.getAttribute(attribute)));
+    }
+  });
+  document.title = translated(document.title);
+  document.querySelector('meta[name="description"]').content = language === 'hy'
+    ? 'Բացահայտեք ACT-ի ուսանողների նախագծերը համակարգչային գիտության, թվային արվեստի և ինժեներիայի ոլորտներում։'
+    : 'Explore creative and technical projects by ACT students.';
+}
+
 const main = document.querySelector('#main');
 
 const studentsById = new Map(
@@ -612,7 +761,7 @@ function initialiseGallery() {
     const index = Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / (track.clientWidth || 1))));
     if (previous) previous.disabled = index === 0;
     if (next) next.disabled = index === slides.length - 1;
-    if (status) status.textContent = `Image ${index + 1} of ${slides.length}`;
+    if (status) status.textContent = translated(`Image ${index + 1} of ${slides.length}`);
   };
   const move = index => {
     const bounded = Math.max(0, Math.min(slides.length - 1, index));
@@ -820,6 +969,7 @@ function render() {
     renderNotFound();
   }
 
+  applyLanguage();
   initialiseGallery();
   if (!filterToFocus) {
     main.classList.remove('page-enter');
@@ -914,6 +1064,20 @@ window.addEventListener('hashchange', () => {
 });
 
 window.addEventListener('pagehide', savePosition);
+
+document.querySelector('#language-select').addEventListener('change', event => {
+  language = event.target.value === 'en' ? 'en' : 'hy';
+  try { localStorage.setItem('actLanguage', language); } catch {}
+  restorePosition = window.scrollY;
+  const oldTrack = main.querySelector('.gallery-track');
+  const imageIndex = oldTrack ? Math.round(oldTrack.scrollLeft / oldTrack.clientWidth) : 0;
+  render();
+  requestAnimationFrame(() => {
+    const track = main.querySelector('.gallery-track');
+    if (track) track.scrollTo({left: imageIndex * track.clientWidth, behavior: 'instant'});
+    document.querySelector('#language-select').focus({preventScroll:true});
+  });
+});
 
 restorePosition = history.state?.scrollY ?? 0;
 render();
