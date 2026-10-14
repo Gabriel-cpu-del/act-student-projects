@@ -11,8 +11,8 @@
 
   <title>Student Projects · ACT</title>
 
-  <link rel="stylesheet" href="style.css?v=20261014-3">
-  <script src="script.js?v=20261014-3" defer></script>
+  <link rel="stylesheet" href="style.css?v=20261014-4">
+  <script src="script.js?v=20261014-4" defer></script>
 </head>
 
 <body>
@@ -23,13 +23,12 @@
       <span class="brand-name">ACT</span>
       <span class="brand-divider"></span>
       <span class="section-title" data-translation="Student Projects">Student Projects</span>
-      <label class="language-picker">
-        <span class="visually-hidden">Language / Լեզու</span>
-        <select id="language-select" aria-label="Language / Լեզու">
-          <option value="hy">Հայերեն</option>
-          <option value="en">English</option>
-        </select>
-      </label>
+      <div class="language-picker">
+        <button id="language-toggle" type="button" aria-label="Հայերեն․ փոխել լեզուն" aria-haspopup="menu" aria-expanded="false" aria-controls="language-menu"></button>
+        <div id="language-menu" class="language-menu" role="menu" aria-label="Language / Լեզու" hidden>
+          <button id="language-option" type="button" role="menuitem" aria-label="English"></button>
+        </div>
+      </div>
     </div>
   </header>
 

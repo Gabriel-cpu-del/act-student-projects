@@ -430,9 +430,59 @@ function translated(value) {
   return result === text ? value : value.replace(original, result);
 }
 
+// Round flags and a small menu for the other language.
+function languageFlag(code) {
+  if (code === 'hy') {
+    return '<svg viewBox="0 0 60 60" aria-hidden="true"><path fill="#d90012" d="M0 0h60v20H0z"/><path fill="#0033a0" d="M0 20h60v20H0z"/><path fill="#f2a800" d="M0 40h60v20H0z"/></svg>';
+  }
+  const stripes = Array.from({length: 13}, (_, index) =>
+    `<rect x="0" y="${index * 60 / 13}" width="60" height="${60 / 13 + .1}" fill="${index % 2 ? '#fff' : '#b22234'}"/>`
+  ).join('');
+  let stars = '';
+  for (let row = 0; row < 9; row++) {
+    const count = row % 2 ? 5 : 6;
+    for (let column = 0; column < count; column++) {
+      const x = 2.8 + column * 4.9 + (row % 2 ? 2.45 : 0);
+      const y = 2.3 + row * 3.4;
+      const points = Array.from({length: 10}, (_, point) => {
+        const angle = -Math.PI / 2 + point * Math.PI / 5;
+        const radius = point % 2 ? .65 : 1.6;
+        return `${x + Math.cos(angle) * radius},${y + Math.sin(angle) * radius}`;
+      }).join(' ');
+      stars += `<polygon points="${points}" fill="#fff"/>`;
+    }
+  }
+  return `<svg viewBox="0 0 60 60" aria-hidden="true">${stripes}<path fill="#3c3b6e" d="M0 0h32v32.31H0z"/>${stars}</svg>`;
+}
+
+function updateLanguageButton() {
+  const other = language === 'hy' ? 'en' : 'hy';
+  const toggle = document.querySelector('#language-toggle');
+  const option = document.querySelector('#language-option');
+  toggle.innerHTML = `<span class="flag-circle">${languageFlag(language)}</span>`;
+  toggle.setAttribute('aria-label', language === 'hy' ? 'Հայերեն․ փոխել լեզուն' : 'English: change language');
+  toggle.title = language === 'hy' ? 'Հայերեն' : 'English';
+  option.innerHTML = `<span class="flag-circle">${languageFlag(other)}</span>`;
+  option.dataset.language = other;
+  option.setAttribute('aria-label', other === 'hy' ? 'Հայերեն' : 'English');
+  option.title = other === 'hy' ? 'Հայերեն' : 'English';
+}
+
+function closeLanguageMenu(returnFocus = false) {
+  document.querySelector('#language-menu').hidden = true;
+  document.querySelector('#language-toggle').setAttribute('aria-expanded', 'false');
+  if (returnFocus) document.querySelector('#language-toggle').focus({preventScroll:true});
+}
+
+function openLanguageMenu(focusOption = false) {
+  document.querySelector('#language-menu').hidden = false;
+  document.querySelector('#language-toggle').setAttribute('aria-expanded', 'true');
+  if (focusOption) document.querySelector('#language-option').focus();
+}
+
 function applyLanguage() {
   document.documentElement.lang = language;
-  document.querySelector('#language-select').value = language;
+  updateLanguageButton();
   document.querySelectorAll('[data-translation]').forEach(element => {
     element.textContent = translated(element.dataset.translation);
   });
@@ -1065,8 +1115,9 @@ window.addEventListener('hashchange', () => {
 
 window.addEventListener('pagehide', savePosition);
 
-document.querySelector('#language-select').addEventListener('change', event => {
-  language = event.target.value === 'en' ? 'en' : 'hy';
+function changeLanguage(nextLanguage) {
+  language = nextLanguage === 'en' ? 'en' : 'hy';
+  closeLanguageMenu();
   try { localStorage.setItem('actLanguage', language); } catch {}
   restorePosition = window.scrollY;
   const oldTrack = main.querySelector('.gallery-track');
@@ -1075,8 +1126,36 @@ document.querySelector('#language-select').addEventListener('change', event => {
   requestAnimationFrame(() => {
     const track = main.querySelector('.gallery-track');
     if (track) track.scrollTo({left: imageIndex * track.clientWidth, behavior: 'instant'});
-    document.querySelector('#language-select').focus({preventScroll:true});
+    document.querySelector('#language-toggle').focus({preventScroll:true});
   });
+}
+
+document.querySelector('#language-toggle').addEventListener('click', () => {
+  const isOpen = !document.querySelector('#language-menu').hidden;
+  if (isOpen) closeLanguageMenu();
+  else openLanguageMenu();
+});
+
+document.querySelector('#language-option').addEventListener('click', event => {
+  changeLanguage(event.currentTarget.dataset.language);
+});
+
+document.querySelector('.language-picker').addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    closeLanguageMenu(true);
+  } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault();
+    openLanguageMenu(true);
+  }
+});
+
+document.addEventListener('click', event => {
+  if (!event.target.closest('.language-picker')) closeLanguageMenu();
+});
+
+document.querySelector('.language-picker').addEventListener('focusout', event => {
+  if (!event.currentTarget.contains(event.relatedTarget)) closeLanguageMenu();
 });
 
 restorePosition = history.state?.scrollY ?? 0;

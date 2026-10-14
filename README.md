@@ -38,7 +38,7 @@ an image gallery and layouts for computers, tablets and phones.
 
 ## Language
 
-Use the header selector to switch between Armenian and English. The choice is saved in the browser. Routes, category filters and project IDs stay the same. Armenian is the default on a first visit. Sample content translations are in script.js; future real content needs translations supplied by its authors or backend.
+Click the round flag in the header, then choose the other flag to switch between Armenian and English. The current flag shows the active language. The choice is saved in the browser. Routes, category filters and project IDs stay the same. Armenian is the default on a first visit. Sample content translations are in script.js; future real content needs translations supplied by its authors or backend.
 
 ## Backend later
 
