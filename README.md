@@ -1,83 +1,84 @@
 # ACT Student Projects
 
-Frontend-прототип новой секции сайта ACT College. Только HTML, CSS и vanilla JavaScript, без сборки и зависимостей. Интерфейс на английском.
+A responsive frontend prototype for the Student Projects section of ACT College. Built with HTML, CSS and vanilla JavaScript, without a build step or external runtime dependencies.
 
-## Файлы
+**Live preview:** https://gabriel-cpu-del.github.io/act-student-projects/
 
-- `index.html` — общая шапка ACT College, навигация, контейнер страниц и footer.
-- `style.css` — цвета, типографика, карточки, иллюстрации-заглушки и адаптивные правила для desktop и mobile.
-- `script.js` — тестовые студенты и проекты, фильтрация, отрисовка трёх страниц и обработка навигации.
+The prototype demonstrates the public browsing experience. Student identities, biographies, projects and project illustrations are sample content. The college banner uses the image supplied for this project. Backend, database, authentication, student submission and moderation are not implemented.
 
-## Локальный запуск
+## Run locally
 
-Самый простой способ — открыть `index.html` двойным щелчком в браузере. Все основные функции работают без сервера и подключения к интернету. Внешние ссылки на ACT College и документацию требуют интернет.
+Open this project folder in VS Code, select **Terminal → New Terminal**, then run:
 
-Для запуска через локальный HTTP-сервер откройте терминал в этой папке:
-
-```sh
-python3 -m http.server 8080 --bind 127.0.0.1
+```bash
+python3 -m http.server 8082 --bind 127.0.0.1
 ```
 
-Откройте `http://127.0.0.1:8080`. Для остановки сервера нажмите `Ctrl+C`. Альтернатива — расширение Live Server в VS Code.
+Open http://127.0.0.1:8082. If the port is already in use, select another port in both the command and URL. Save edits and refresh the browser; stop the server with Ctrl+C. No npm installation is required.
 
-## Страницы и переходы
+## Files
 
-- `#projects` — Projects Home, все проекты.
-- `#projects?category=Digital%20Art` — пример фильтра по категории.
-- `#project/campus-companion` — Project Details.
-- `#student/aram` — Student Profile.
+| File | Purpose |
+|---|---|
+| `index.html` | Section header, main container, footer and script/style loading |
+| `style.css` | Responsive layouts, faculty colors, cards, transitions and gallery styling |
+| `script.js` | Filters, pages, profiles, gallery and navigation |
+| `data.js` | Runtime sample `students` and `projects` |
+| `data/students.json`, `data/projects.json` | Matching data snapshots for developer handoff |
+| `assets/act-college.jpg` | Supplied college banner image |
+| `assets/*.svg` | Temporary project illustrations |
+| `assets/fonts/` | Local Latin Rubik font and its SIL OFL license |
+| `FUTURE_API.md` | Proposed data contract and backend requirements |
+| `HANDOFF.md` | Scope, checks and integration checklist |
 
-Обычные ссылки открываются в той же вкладке. Кнопки браузера «Назад»/«Вперёд» работают и восстанавливают фильтр из URL. `Go Back` возвращает на предыдущую страницу секции; при прямом открытии ссылки ведёт к проектам. `Back to Projects` открывает полную коллекцию.
+The running frontend reads **data.js**, not the JSON snapshots. Keep snapshots synchronized when changing fixtures for handoff.
 
-## Как менять данные
+## Pages and behavior
 
-В начале `script.js` находятся массивы `students` и `projects`. Каждый проект содержит массив `categories` и массив `authors`. Каждый элемент `authors` содержит `studentId`, `role`, `description` и `technologies`. `studentId` должен совпадать с `id` студента. Вклад хранится в проекте, поскольку один студент может выполнять разные роли в разных работах. Используйте только три категории: `Computer Science`, `Digital Art`, `Engineering`.
+- Home: `#/projects/All`.
+- Categories: All, Computer Science, Digital Art, Engineering and Manufacturing.
+- Project: `#/project/act-creative-platform`.
+- Student: `#/student/ani`.
+- One project may have multiple categories and contributors. It is stored once and appears in every matching category and participant profile.
+- All contributor names appear on a card, one per line. Faculty labels are stacked on cards to accommodate long names without shrinking text.
+- Project Details includes About the project, Project Team, contributor roles/contributions/tools, optional public links and an image gallery.
+- Student Profile includes biography, Faculty, Course, public links and participating projects.
+- Back and browser Back/Forward restore the previous route, including the category filter. A direct entry without section history falls back to the full project list.
+- On cards, the image fills its container edge to edge with `object-fit: cover`; cropping is intentional. The Details gallery uses `contain` to show the complete image.
+- Gallery buttons and ArrowLeft/ArrowRight/Home/End keys browse images. Standard horizontal scrolling supports touch and trackpads. There is no autoplay. A single image hides unnecessary controls.
 
-Поле `visual` выбирает локальную HTML/CSS-заглушку. Для настоящих работ можно заменить `projectVisual()` на обычный `<img>` и добавить в данные поле пути к изображению. Визуальные материалы сейчас абстрактные и не выдаются за скриншоты реальных проектов.
+## Edit content
 
-В Project links работают скачивание описания проекта и переход к документации технологии. Ссылки на реальные demo и source code пока отсутствуют: проекты и студенты вымышленные.
+In `data.js`, each author has a `studentId` that matches a student `id`. Store contribution details on that project-author relationship, since a student may have different roles in different projects. Use stable IDs and the three allowed category names.
 
-## Подключение к существующему сайту
-
-В рабочей папке не было исходников сайта ACT College, поэтому это готовая самостоятельная секция с общей навигацией на официальный сайт. Для интеграции разместите три файла рядом в каталоге сайта, например `/student-projects/`, и добавьте ссылку на этот каталог в его меню. Шапку и footer можно заменить существующими общими компонентами сайта. API и база данных для этого не требуются.
-
-## Проверка
-
-Проверьте категории, путь Projects → Project → Profile → другой Project, обе кнопки возврата и кнопки браузера. На мобильном экране карточки расположены в одну колонку, на планшете — в две, на desktop — в три. Неизвестные адреса проектов и студентов показывают понятное сообщение и ссылку к коллекции.
-
-## Несколько авторов и категорий
-
-`ACT Creative Platform` — один объект в `projects`, с категориями `Computer Science` и `Digital Art`. Его авторы — Aram Khachatryan (`aram-khachatryan`) и Ani Harutyunyan (`ani`). Aram Petrosyan (`aram`) и его существующие проекты сохранены.
-
-Пример структуры проекта:
+The card displays `Created` followed by `project.year`. It is a project creation year supplied by the data, not automatically the current year. Each project has one `cover` and an optional `images` array for additional gallery images:
 
 ```js
-{
-  id: 'act-creative-platform',
-  categories: ['Computer Science', 'Digital Art'],
-  authors: [
-    {
-      studentId: 'aram-khachatryan',
-      role: 'Frontend developer',
-      description: 'Developed the frontend functionality and navigation.',
-      technologies: ['HTML', 'CSS', 'JavaScript']
-    },
-    {
-      studentId: 'ani',
-      role: 'UI/UX and visual designer',
-      description: 'Created the UI/UX concept and interface assets.',
-      technologies: ['Figma', 'Illustrator', 'Photoshop']
-    }
-  ]
-}
+cover: { src: 'assets/project-cover.jpg', alt: 'Project overview' },
+images: [
+  { src: 'assets/project-detail.jpg', alt: 'Detailed view of the project' }
+],
+links: [
+  { label: 'GitHub', url: 'https://github.com/your-account/your-project' }
+]
 ```
 
-Фильтр использует `project.categories.includes(selectedCategory)`. `All` показывает исходный массив целиком. Проект не копируется для каждой категории.
+Use real, approved links when available. Empty links show an empty state. Only HTTP/HTTPS links are rendered. The ACT Creative Platform fixture has three temporary illustrations to demonstrate the gallery.
 
-Профиль получает проекты через `project.authors.some(author => author.studentId === student.id)`. Поэтому оба студента видят один и тот же объект. Ссылки из обоих профилей ведут к `#project/act-creative-platform`.
+The older `project.technologies` field remains in fixtures for compatibility but is not displayed as a separate project section. Contributor `authors[].technologies` is displayed in Project Team. General information can be included in the plain-text project description.
 
-Карточки, Project Team и Contributions используют `authors.map(...)`: для одного автора выводится один участник, для нескольких — соответствующее число. Чтобы добавить третьего участника, достаточно добавить объект в `authors` и студента в `students`.
+## Integration with ACT
 
-Поля `biography` и `links` относятся к студенту. Пустой массив `links` скрывает блок внешних ссылок. Демонстрационные ссылки ведут на безопасные placeholder-адреса `example.com`, а не на чужие аккаунты.
+The visual direction follows https://www.actcollege.am/hy: Rubik typography, neutral text, light card shadows and blue/yellow/lime faculty accents. The standalone header identifies the section; it does not add Home/About/account navigation.
 
-Счётчики проектов и дисциплин убраны с главной страницы, фильтров и профилей. Общая навигация и оформление сохранены.
+When embedding, reuse the college's existing header/footer, isolate global CSS within the section and reconcile hash routing with the host site's router. The Latin font subset is suitable for the current English interface; Armenian content needs an appropriate font fallback or additional font coverage.
+
+Replace fixture loading with an API data adapter that supplies the same relations. Add loading, error/retry, pagination and missing-data handling during that integration. Display only approved public projects and student fields. Keep this fixture version available for development until the API is connected.
+
+GitHub Pages hosts the static prototype only. The future API belongs to the college's backend/portal infrastructure; see [Future API](FUTURE_API.md).
+
+## Verification
+
+Check All and each category, shared projects in both participant profiles, View Details → View Profile → Back, direct links and refresh, gallery navigation and unknown IDs. Test desktop/tablet/mobile and keyboard access. Recent browser checks cover 320 px and 768 px layouts and the main desktop flow; real-device touch testing remains part of acceptance.
+
+See [Handoff](HANDOFF.md) for the delivery checklist. Rubik is distributed under the license in `assets/fonts/OFL.txt`.

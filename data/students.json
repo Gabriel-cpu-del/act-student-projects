@@ -1,0 +1,38 @@
+[
+  {
+    "id": "aram",
+    "name": "Aram Petrosyan",
+    "initials": "AP",
+    "faculty": "Computer Science",
+    "course": "Year 2",
+    "biography": "Interested in web development, audio experiments and making everyday campus life easier.",
+    "links": []
+  },
+  {
+    "id": "ani",
+    "name": "Ani Harutyunyan",
+    "initials": "AH",
+    "faculty": "Digital Art",
+    "course": "Year 2",
+    "biography": "Exploring typography, visual storytelling and thoughtful interfaces for creative communities.",
+    "links": []
+  },
+  {
+    "id": "davit",
+    "name": "Davit Sargsyan",
+    "initials": "DS",
+    "faculty": "Engineering and Manufacturing",
+    "course": "Year 3",
+    "biography": "Enjoys building modular prototypes and exploring practical uses for sensors and electronics.",
+    "links": []
+  },
+  {
+    "id": "aram-khachatryan",
+    "name": "Aram Khachatryan",
+    "initials": "AK",
+    "faculty": "Computer Science",
+    "course": "Year 2",
+    "biography": "Interested in frontend development, web technologies and building useful digital products.",
+    "links": []
+  }
+]

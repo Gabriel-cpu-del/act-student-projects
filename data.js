@@ -1,0 +1,302 @@
+// Demo data. Gallery images are temporary illustrations.
+window.ACT_DATA = {
+  "categories": [
+    "Computer Science",
+    "Digital Art",
+    "Engineering and Manufacturing"
+  ],
+  "students": [
+    {
+      "id": "aram",
+      "name": "Aram Petrosyan",
+      "initials": "AP",
+      "faculty": "Computer Science",
+      "course": "Year 2",
+      "biography": "Interested in web development, audio experiments and making everyday campus life easier.",
+      "links": []
+    },
+    {
+      "id": "ani",
+      "name": "Ani Harutyunyan",
+      "initials": "AH",
+      "faculty": "Digital Art",
+      "course": "Year 2",
+      "biography": "Exploring typography, visual storytelling and thoughtful interfaces for creative communities.",
+      "links": []
+    },
+    {
+      "id": "davit",
+      "name": "Davit Sargsyan",
+      "initials": "DS",
+      "faculty": "Engineering and Manufacturing",
+      "course": "Year 3",
+      "biography": "Enjoys building modular prototypes and exploring practical uses for sensors and electronics.",
+      "links": []
+    },
+    {
+      "id": "aram-khachatryan",
+      "name": "Aram Khachatryan",
+      "initials": "AK",
+      "faculty": "Computer Science",
+      "course": "Year 2",
+      "biography": "Interested in frontend development, web technologies and building useful digital products.",
+      "links": []
+    }
+  ],
+  "projects": [
+    {
+      "id": "campus-companion",
+      "title": "Campus Companion",
+      "categories": [
+        "Computer Science"
+      ],
+      "authors": [
+        {
+          "studentId": "aram",
+          "role": "Frontend development",
+          "description": "Designed the class planner interface and developed its navigation and JavaScript interactions.",
+          "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+          ]
+        }
+      ],
+      "year": "2026",
+      "summary": "A simpler way to plan your day on campus.",
+      "description": "Campus Companion is a student-built interface for organizing classes, deadlines and study sessions. The project explores how a clear layout and small, thoughtful interactions can make a busy college day easier to navigate.",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript"
+      ],
+      "cover": {
+        "src": "assets/smart-campus.svg",
+        "alt": "Illustration of a campus planner interface"
+      },
+      "images": [],
+      "links": []
+    },
+    {
+      "id": "type-in-motion",
+      "title": "Type in Motion",
+      "categories": [
+        "Digital Art"
+      ],
+      "authors": [
+        {
+          "studentId": "ani",
+          "role": "Typography and visual design",
+          "description": "Created the poster compositions, letterform studies and visual rhythm of the series.",
+          "technologies": [
+            "Figma",
+            "Adobe Illustrator",
+            "Typography"
+          ]
+        }
+      ],
+      "year": "2026",
+      "summary": "An exploration of letters, rhythm and visual expression.",
+      "description": "Type in Motion explores Armenian-inspired typographic rhythms through an experimental poster series. Each composition studies the relationship between solid and outlined letterforms, negative space and movement.",
+      "technologies": [
+        "Figma",
+        "Adobe Illustrator",
+        "Typography"
+      ],
+      "cover": {
+        "src": "assets/colorful-minds.svg",
+        "alt": "Abstract shapes illustrating a visual design project"
+      },
+      "images": [],
+      "links": []
+    },
+    {
+      "id": "modular-systems",
+      "title": "Modular Systems",
+      "categories": [
+        "Engineering and Manufacturing"
+      ],
+      "authors": [
+        {
+          "studentId": "davit",
+          "role": "Engineering and prototyping",
+          "description": "Designed the component connections and developed the prototype assembly plan.",
+          "technologies": [
+            "CAD",
+            "Arduino",
+            "Prototyping"
+          ]
+        }
+      ],
+      "year": "2026",
+      "summary": "Small modules. A smarter approach to building.",
+      "description": "Modular Systems investigates how reusable components can simplify the design of classroom engineering kits. The student developed connection diagrams and a prototype assembly plan, comparing different arrangements for clarity and ease of use.",
+      "technologies": [
+        "CAD",
+        "Arduino",
+        "Prototyping"
+      ],
+      "cover": {
+        "src": "assets/autonomous-robot.svg",
+        "alt": "Illustration used as a placeholder for an engineering project"
+      },
+      "images": [],
+      "links": []
+    },
+    {
+      "id": "sound-to-signal",
+      "title": "Sound to Signal",
+      "categories": [
+        "Computer Science"
+      ],
+      "authors": [
+        {
+          "studentId": "aram",
+          "role": "Audio visualization development",
+          "description": "Developed the audio frequency mapping and responsive visualization experiments.",
+          "technologies": [
+            "JavaScript",
+            "Web Audio",
+            "Canvas"
+          ]
+        }
+      ],
+      "year": "2026",
+      "summary": "Turning everyday audio into visible patterns.",
+      "description": "Sound to Signal is an experiment in audio visualization. It maps changes in audio frequency to a responsive bar display, helping students understand how digital signals can be represented through simple visual patterns.",
+      "technologies": [
+        "JavaScript",
+        "Web Audio",
+        "Canvas"
+      ],
+      "cover": {
+        "src": "assets/colorful-minds.svg",
+        "alt": "Abstract visual placeholder for an audio visualization project"
+      },
+      "images": [],
+      "links": []
+    },
+    {
+      "id": "shift-perspective",
+      "title": "Shift Perspective",
+      "categories": [
+        "Digital Art"
+      ],
+      "authors": [
+        {
+          "studentId": "ani",
+          "role": "Visual identity design",
+          "description": "Created the layered typography, exhibition identity and interface assets.",
+          "technologies": [
+            "Adobe Illustrator",
+            "Figma",
+            "Brand Design"
+          ]
+        }
+      ],
+      "year": "2026",
+      "summary": "A visual identity that sees things a little differently.",
+      "description": "Shift Perspective is a fictional visual identity for a student creative exhibition. It uses layered typography and a warm, limited palette to explore depth, repetition and the energy of collaborative work.",
+      "technologies": [
+        "Adobe Illustrator",
+        "Figma",
+        "Brand Design"
+      ],
+      "cover": {
+        "src": "assets/colorful-minds.svg",
+        "alt": "Colorful abstract placeholder for a visual identity project"
+      },
+      "images": [],
+      "links": []
+    },
+    {
+      "id": "energy-grid",
+      "title": "Energy Grid",
+      "categories": [
+        "Engineering and Manufacturing"
+      ],
+      "authors": [
+        {
+          "studentId": "davit",
+          "role": "Circuit design and analysis",
+          "description": "Developed the module layouts, sensor prototype and energy reading diagrams.",
+          "technologies": [
+            "Arduino",
+            "Sensors",
+            "Circuit Design"
+          ]
+        }
+      ],
+      "year": "2026",
+      "summary": "Exploring more efficient ways to share energy.",
+      "description": "Energy Grid is a classroom study of small-scale energy distribution. The project compares module layouts and presents readings as a simple grid, making energy flow easier to explain and discuss.",
+      "technologies": [
+        "Arduino",
+        "Sensors",
+        "Circuit Design"
+      ],
+      "cover": {
+        "src": "assets/autonomous-robot.svg",
+        "alt": "Engineering illustration used as a placeholder for Energy Grid"
+      },
+      "images": [],
+      "links": []
+    },
+    {
+      "id": "act-creative-platform",
+      "title": "ACT Creative Platform",
+      "categories": [
+        "Computer Science",
+        "Digital Art"
+      ],
+      "authors": [
+        {
+          "studentId": "aram-khachatryan",
+          "role": "Frontend developer",
+          "description": "Developed the frontend functionality, page navigation, category filtering and JavaScript interactions.",
+          "technologies": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+          ]
+        },
+        {
+          "studentId": "ani",
+          "role": "UI/UX and visual designer",
+          "description": "Created the UI/UX concept, visual hierarchy, project card design and interface assets.",
+          "technologies": [
+            "Figma",
+            "Illustrator",
+            "Photoshop"
+          ]
+        }
+      ],
+      "year": "2026",
+      "summary": "A shared space for student creativity, built across disciplines.",
+      "description": "ACT Creative Platform is a collaborative concept for showcasing student work. Aram translated the interface into responsive pages and interactive project browsing, while Ani shaped the visual experience. Together they explored how computer science and digital art can make creative work easier to discover.",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Figma",
+        "Illustrator",
+        "Photoshop"
+      ],
+      "cover": {
+        "src": "assets/smart-campus.svg",
+        "alt": "Illustration of a collaborative student platform"
+      },
+      "images": [
+        {
+          "src": "assets/colorful-minds.svg",
+          "alt": "Abstract design illustration for the collaborative platform"
+        },
+        {
+          "src": "assets/task-manager.svg",
+          "alt": "Task checklist illustration for the collaborative platform"
+        }
+      ],
+      "links": []
+    }
+  ]
+};
