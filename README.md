@@ -9,15 +9,22 @@ A working frontend prototype made with HTML, CSS and JavaScript.
 - `script.js` — students, projects and website behavior.
 - `assets/` — images and the local font.
 
-## Run
+## Open the website
 
-Open the project folder in VS Code, open a terminal and run:
+**[Open ACT Student Projects](https://gabriel-cpu-del.github.io/act-student-projects/)**
+
+This is the public link. Anyone can open it without starting a local server or installing the project.
+Use this link when sharing the website with a teacher or other visitors.
+
+## Local editing (optional)
+
+For development on your own computer, open the project folder in VS Code and run this in its terminal:
 
 ```bash
 python3 -m http.server 8082 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:8082. Save changes and refresh the browser.
+Open the local address printed in the terminal. It works only on your own computer while the server is running; it is not a public sharing link. Save changes and refresh the browser.
 
 ## Data
 
