@@ -305,6 +305,19 @@ const categories = [
 // Page rendering, filtering and navigation.
 // Interface and sample content translations. Data IDs and routes stay unchanged.
 const armenianText = {
+  'Home': 'Գլխավոր',
+  'Admission': 'Ընդունելություն',
+  'Portal': 'Պորտալ',
+  'Academia': 'Ակադեմիա',
+  'International Partners': 'Գործընկերներ',
+  'About Us': 'Մեր Մասին',
+  'Careers': 'Աշխատանք',
+  'Contact Us': 'Կապ մեզ հետ',
+  'Store': 'Խանութ',
+  'Apply': 'Գրանցվել',
+  'Menu': 'Մենյու',
+  'College navigation': 'Քոլեջի նավարկում',
+  'ACT College · Student Projects': 'ACT Քոլեջ · Ուսանողների նախագծեր',
   'Student Projects': 'Ուսանողների նախագծեր',
   'ACT · Student Projects': 'ACT · Ուսանողների նախագծեր',
   'Student work. Shared ideas.': 'Ուսանողների աշխատանքներ։ Համատեղ գաղափարներ։',
@@ -485,6 +498,9 @@ function applyLanguage() {
   updateLanguageButton();
   document.querySelectorAll('[data-translation]').forEach(element => {
     element.textContent = translated(element.dataset.translation);
+  });
+  document.querySelectorAll('[data-translation-label]').forEach(element => {
+    element.setAttribute('aria-label', translated(element.dataset.translationLabel));
   });
   const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
   let node;
@@ -1157,6 +1173,32 @@ document.addEventListener('click', event => {
 document.querySelector('.language-picker').addEventListener('focusout', event => {
   if (!event.currentTarget.contains(event.relatedTarget)) closeLanguageMenu();
 });
+
+// College menu is a visual preview; project navigation remains in the catalogue.
+const collegeMenuToggle = document.querySelector('#college-menu-toggle');
+const collegeNavigation = document.querySelector('#college-navigation');
+
+function closeCollegeMenu(returnFocus = false) {
+  collegeMenuToggle.setAttribute('aria-expanded', 'false');
+  collegeNavigation.classList.remove('is-open');
+  if (returnFocus) collegeMenuToggle.focus();
+}
+
+collegeMenuToggle.addEventListener('click', () => {
+  const open = collegeMenuToggle.getAttribute('aria-expanded') !== 'true';
+  collegeMenuToggle.setAttribute('aria-expanded', String(open));
+  collegeNavigation.classList.toggle('is-open', open);
+});
+document.querySelector('.college-header').addEventListener('keydown', event => {
+  if (event.key === 'Escape' && collegeMenuToggle.getAttribute('aria-expanded') === 'true') {
+    closeCollegeMenu(true);
+  }
+});
+document.addEventListener('click', event => {
+  if (!event.target.closest('.college-header')) closeCollegeMenu();
+});
+document.querySelector('.college-logo').addEventListener('click', () => closeCollegeMenu());
+window.matchMedia('(min-width: 1341px)').addEventListener('change', () => closeCollegeMenu());
 
 restorePosition = history.state?.scrollY ?? 0;
 render();
