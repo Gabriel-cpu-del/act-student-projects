@@ -306,6 +306,8 @@ const categories = [
 // Interface and sample content translations. Data IDs and routes stay unchanged.
 const armenianText = {
   'Home': 'Գլխավոր',
+  'Projects': 'Նախագծեր',
+  'ACT College': 'ACT Քոլեջ',
   'Admission': 'Ընդունելություն',
   'Portal': 'Պորտալ',
   'Academia': 'Ակադեմիա',
@@ -496,6 +498,9 @@ function openLanguageMenu(focusOption = false) {
 function applyLanguage() {
   document.documentElement.lang = language;
   updateLanguageButton();
+  document.querySelectorAll('[data-college-path]').forEach(link => {
+    link.href = `https://www.actcollege.am/${language}${link.dataset.collegePath}`;
+  });
   document.querySelectorAll('[data-translation]').forEach(element => {
     element.textContent = translated(element.dataset.translation);
   });
@@ -1174,7 +1179,7 @@ document.querySelector('.language-picker').addEventListener('focusout', event =>
   if (!event.currentTarget.contains(event.relatedTarget)) closeLanguageMenu();
 });
 
-// College menu is a visual preview; project navigation remains in the catalogue.
+// College links open in another tab; the project catalogue stays open here.
 const collegeMenuToggle = document.querySelector('#college-menu-toggle');
 const collegeNavigation = document.querySelector('#college-navigation');
 
@@ -1196,6 +1201,9 @@ document.querySelector('.college-header').addEventListener('keydown', event => {
 });
 document.addEventListener('click', event => {
   if (!event.target.closest('.college-header')) closeCollegeMenu();
+});
+collegeNavigation.addEventListener('click', event => {
+  if (event.target.closest('a')) closeCollegeMenu();
 });
 document.querySelector('.college-logo').addEventListener('click', () => closeCollegeMenu());
 window.matchMedia('(min-width: 1341px)').addEventListener('change', () => closeCollegeMenu());
