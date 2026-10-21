@@ -1041,6 +1041,7 @@ function render() {
   }
 
   applyLanguage();
+  updateActiveNavigation();
   initialiseGallery();
   if (!filterToFocus) {
     main.classList.remove('page-enter');
@@ -1183,6 +1184,22 @@ document.querySelector('.language-picker').addEventListener('focusout', event =>
 const collegeMenuToggle = document.querySelector('#college-menu-toggle');
 const collegeNavigation = document.querySelector('#college-navigation');
 
+// Highlight the section displayed in this tab, not a link opened elsewhere.
+function updateActiveNavigation() {
+  const current = new URL(location.href);
+  const pagePath = path => path.replace(/\/index\.html$/, '/').replace(/\/$/, '');
+
+  collegeNavigation.querySelectorAll('.college-nav-item').forEach(link => {
+    const destination = new URL(link.href, location.href);
+    const active = destination.origin === current.origin &&
+      pagePath(destination.pathname) === pagePath(current.pathname);
+
+    link.classList.toggle('active', active);
+    if (active) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  });
+}
+
 function closeCollegeMenu(returnFocus = false) {
   collegeMenuToggle.setAttribute('aria-expanded', 'false');
   collegeNavigation.classList.remove('is-open');
@@ -1203,8 +1220,12 @@ document.addEventListener('click', event => {
   if (!event.target.closest('.college-header')) closeCollegeMenu();
 });
 collegeNavigation.addEventListener('click', event => {
-  if (event.target.closest('a')) closeCollegeMenu();
+  if (event.target.closest('a')) {
+    updateActiveNavigation();
+    closeCollegeMenu();
+  }
 });
+window.addEventListener('focus', updateActiveNavigation);
 document.querySelector('.college-logo').addEventListener('click', () => closeCollegeMenu());
 window.matchMedia('(min-width: 1341px)').addEventListener('change', () => closeCollegeMenu());
 
