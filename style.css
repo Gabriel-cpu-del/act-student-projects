@@ -774,9 +774,9 @@ h1, h2, h3 { letter-spacing: -0.025em; font-weight: 600; }
 .card-body { padding: 20px; }
 .summary { font-weight: 400; }
 .card-authors { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-.card-author { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.card-author { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .card-author a { color: #666; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere; }
-.card-author .avatar { width: 28px; height: 28px; font-size: 10px; border: 0; }
+.card-author .avatar { width: 36px; height: 36px; font-size: 12px; border: 0; }
 .card-bottom { flex-wrap: wrap; padding-top: 12px; }
 .created { color: #737373; font-size: 12px; }
 .text-link { color: #111; }
