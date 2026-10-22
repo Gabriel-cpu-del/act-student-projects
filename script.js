@@ -621,7 +621,9 @@ function links(items) {
         <a
           class="button-link"
           href="${escape(item.url)}"
-          aria-label="${escape(item.label)}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="${escape(item.label)} (opens in a new tab)"
         >
           ${escape(item.label)}
           <span aria-hidden="true">↗</span>
@@ -1178,11 +1180,11 @@ document.querySelector('.language-picker').addEventListener('focusout', event =>
   if (!event.currentTarget.contains(event.relatedTarget)) closeLanguageMenu();
 });
 
-// College links open their official pages in this tab.
+// College links open in another tab; the project catalogue stays open here.
 const collegeMenuToggle = document.querySelector('#college-menu-toggle');
 const collegeNavigation = document.querySelector('#college-navigation');
 
-// Highlight the current Projects section.
+// Highlight the section displayed in this tab, not a link opened elsewhere.
 function updateActiveNavigation() {
   const current = new URL(location.href);
   const pagePath = path => path.replace(/\/index\.html$/, '/').replace(/\/$/, '');

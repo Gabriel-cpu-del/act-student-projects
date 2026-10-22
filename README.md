@@ -1,20 +1,56 @@
 # ACT Student Projects
 
-[Open the website](https://gabriel-cpu-del.github.io/act-student-projects/)
+A working frontend prototype made with HTML, CSS and JavaScript.
 
-A frontend prototype built with HTML, CSS and JavaScript.
-The college menu opens official ACT pages in the same tab.
+## Files
 
-- `index.html` — page structure.
-- `style.css` — design and mobile layouts.
-- `script.js` — demo students, projects, translations and interactions.
-- `assets/` — images and font files.
+- `index.html` — page structure and file connections.
+- `style.css` — appearance and responsive layouts.
+- `script.js` — students, projects and website behavior.
+- `assets/` — images and the local font.
 
-To run locally, open this folder in VS Code and use its terminal:
+## Open the website
+
+**[Open ACT Student Projects](https://gabriel-cpu-del.github.io/act-student-projects/)**
+
+This is the public link. Anyone can open it without starting a local server or installing the project.
+Use this link when sharing the website with a teacher or other visitors.
+
+## Local editing (optional)
+
+For development on your own computer, open the project folder in VS Code and run this in its terminal:
 
 ```bash
 python3 -m http.server 8082 --bind 127.0.0.1
 ```
 
-Demo data is at the beginning of `script.js`: `const students` and `const projects`.
-No backend, database or login is included.
+Open the local address printed in the terminal. It works only on your own computer while the server is running; it is not a public sharing link. Save changes and refresh the browser.
+
+## Data
+
+The beginning of `script.js` contains `const students` and `const projects`.
+The records are examples, not real student information.
+
+Each project has categories and authors. Each author's `studentId` matches a student's `id`.
+One project can belong to several categories and appear in several student profiles without being copied.
+An author's role, contribution and tools are stored inside that project's `authors` array.
+
+`cover` is the card image. `images` contains additional pictures for the project gallery.
+`year` is the creation year shown on the card. `links` contains public project or profile URLs.
+
+## Features
+
+Category filtering, Project Details, Project Team, Student Profiles, Back navigation,
+an image gallery and layouts for computers, tablets and phones.
+
+## Language
+
+Click the round flag in the header, then choose the other flag to switch between Armenian and English. The current flag shows the active language. The choice is saved in the browser. Routes, category filters and project IDs stay the same. Armenian is the default on a first visit. Sample content translations are in script.js; future real content needs translations supplied by its authors or backend.
+
+## Backend later
+
+Backend, database, login and project submission are not included.
+The backend developer can replace the sample arrays with approved API data while keeping the same fields and ID relationships.
+API loading must finish before rendering pages. Endpoint names and portal rules will be agreed separately.
+
+Rubik's font license is included in `assets/fonts/OFL.txt`.
