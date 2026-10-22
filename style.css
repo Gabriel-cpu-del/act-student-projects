@@ -568,7 +568,10 @@ p {
 }
 
 .profile-info {
+  min-width: 0;
+  width: 100%;
   max-width: 700px;
+  overflow-wrap: anywhere;
 }
 
 .profile-info h1 {
@@ -788,10 +791,10 @@ h1, h2, h3 { letter-spacing: -0.025em; font-weight: 600; }
 .person-row .badge { font-size: 11px; }
 .person-course { margin-top: 6px !important; }
 .profile-facts { display: grid; gap: 12px; margin: 0 0 24px; }
-.profile-facts div { display: grid; grid-template-columns: 64px minmax(0,1fr); align-items: center; gap: 12px; }
+.profile-facts div { display: grid; grid-template-columns: max-content minmax(0,1fr); align-items: start; gap: 12px; }
 .profile-facts dt { color: #737373; font-size: 13px; }
-.profile-facts dd { margin: 0; color: #111; font-size: 14px; }
-.profile-facts .badge { max-width: 100%; }
+.profile-facts dd { min-width: 0; margin: 0; color: #111; font-size: 14px; }
+.profile-facts .badge { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 .panel { background: #fff; box-shadow: var(--shadow); }
 .tools-label { font-size: 12px; color: #737373; margin-bottom: 8px; }
 .page-enter { animation: page-appear .18s ease-out both; }
@@ -813,7 +816,7 @@ h1, h2, h3 { letter-spacing: -0.025em; font-weight: 600; }
   .hero .container { padding-block: 40px; }
   .card-cover img { height: 150px; }
   .gallery-slide img { height: 220px; }
-  .profile-facts div { grid-template-columns: 56px minmax(0,1fr); gap: 8px; }
+  .profile-facts div { grid-template-columns: minmax(0,1fr); gap: 6px; }
 }
 @media(prefers-reduced-motion:reduce) {
   .page-enter { animation: none; }
