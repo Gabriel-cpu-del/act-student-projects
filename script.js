@@ -305,38 +305,6 @@ const categories = [
 // Page rendering, filtering and navigation.
 // Interface and sample content translations. Data IDs and routes stay unchanged.
 const armenianText = {
-  "View student projects": "Դիտել ուսանողների նախագծերը",
-  "ACT College in Parakar offers education in Computer Science, Digital Art, and Engineering and Manufacturing.": "Փարաքարում գտնվող ACT քոլեջը կրթություն է առաջարկում համակարգչային գիտության, թվային արվեստի և ինժեներիայի ու արտադրության ոլորտներում։",
-  "Armenian Creative Technologies College": "Հայկական ստեղծարար տեխնոլոգիաների քոլեջ",
-  "Faculties": "Ֆակուլտետներ",
-  "Who can apply?": "Ո՞վ կարող է դիմել",
-  "ACT College welcomes applicants who have completed Grade 9 and want to study technology or the creative industries.": "ACT քոլեջը ընդունում է 9-րդ դասարանն ավարտած դիմորդների, որոնք ցանկանում են սովորել տեխնոլոգիաների կամ ստեղծարար ոլորտներում։",
-  "Application process": "Ընդունելության ընթացակարգ",
-  "The process includes an application, an interview and campus visit, an entrance exam, and an admission decision. Check the official admission page for current requirements.": "Ընդունելության ընթացակարգը ներառում է հայտ, հարցազրույց և այց քոլեջ, ընդունելության քննություն ու ընդունման որոշում։ Գործող պահանջները ներկայացված են ընդունելության պաշտոնական էջում։",
-  "Read more on the ACT website": "Կարդալ ավելին ACT-ի կայքում",
-  "Located in Parakar, ACT College brings technology and creative education together. GITC implements and operates the college.": "Փարաքարում գտնվող ACT քոլեջը միավորում է տեխնոլոգիական և ստեղծարար կրթությունը։ Քոլեջի գործունեությունն իրականացնում և կազմակերպում է GITC-ն։",
-  "The college emphasizes innovation, collaboration, and access to education for talented young people from across Armenia.": "Քոլեջը կարևորում է նորարարությունը, համագործակցությունը և կրթության հասանելիությունը Հայաստանի տարբեր շրջանների տաղանդավոր երիտասարդների համար։",
-  "ACT College offers three faculties: Computer Science, Digital Art, and Engineering and Manufacturing.": "ACT քոլեջն ունի երեք ֆակուլտետ՝ համակարգչային գիտություն, թվային արվեստ և ինժեներիա ու արտադրություն։",
-  "Explore ACT College’s partner network and the organizations supporting its educational community on the official partners page.": "ACT քոլեջի գործընկերների ցանցին և կրթական համայնքին աջակցող կազմակերպություններին կարող եք ծանոթանալ գործընկերների պաշտոնական էջում։",
-  "Contact ACT College about admission, educational programs, or cooperation.": "Ընդունելության, կրթական ծրագրերի կամ համագործակցության հարցերով կապվեք ACT քոլեջի հետ։",
-  "Isahak Gasparyan Street 2, Parakar, Armenia": "Իսահակ Գասպարյան փողոց 2, Փարաքար, Հայաստան",
-  "Use the college’s existing student portal to sign in and access your student account.": "Մուտք գործելու և ուսանողական հաշիվն օգտագործելու համար անցեք քոլեջի գործող ուսանողական պորտալ։",
-  "Open the student portal": "Բացել ուսանողական պորտալը",
-  "Explore current job opportunities through ACT College’s official careers website.": "Գործող թափուր աշխատատեղերին կարող եք ծանոթանալ ACT քոլեջի աշխատանքի պաշտոնական կայքում։",
-  "View current opportunities": "Դիտել թափուր աշխատատեղերը",
-  "The official ACT store offers college-branded clothing, mugs, notebooks, and other accessories. Visit the college store to browse products and place an order.": "ACT-ի պաշտոնական խանութն առաջարկում է քոլեջի տարբերանշանով հագուստ, բաժակներ, նոթատետրեր և այլ պարագաներ։ Ապրանքներին ծանոթանալու և պատվեր կատարելու համար անցեք քոլեջի խանութ։",
-  "Page not found": "Էջը չի գտնվել",
-  "Home · ACT": "Գլխավոր · ACT",
-  "Admission · ACT": "Ընդունելություն · ACT",
-  "About Us · ACT": "Մեր Մասին · ACT",
-  "Academia · ACT": "Ակադեմիա · ACT",
-  "International Partners · ACT": "Գործընկերներ · ACT",
-  "Contact Us · ACT": "Կապ մեզ հետ · ACT",
-  "Portal · ACT": "Պորտալ · ACT",
-  "Careers · ACT": "Աշխատանք · ACT",
-  "Store · ACT": "Խանութ · ACT",
-  "Student Projects · ACT": "Ուսանողների նախագծեր · ACT",
-  "Page not found · ACT": "Էջը չի գտնվել · ACT",
   'Home': 'Գլխավոր',
   'Projects': 'Նախագծեր',
   'ACT College': 'ACT Քոլեջ',
@@ -556,9 +524,6 @@ function applyLanguage() {
 }
 
 const main = document.querySelector('#main');
-const pageName = document.body.dataset.page || 'index';
-const staticContent = main.innerHTML;
-const staticTitle = document.title;
 
 const studentsById = new Map(
   students.map(student => [student.id, student])
@@ -580,10 +545,7 @@ function escape(value) {
 }
 
 function route(type, id) {
-  if (type === 'projects') {
-    return id && id !== 'All' ? `projects.html?category=${encodeURIComponent(id)}` : 'projects.html';
-  }
-  return `${type}.html?id=${encodeURIComponent(id)}`;
+  return `#/${type}/${encodeURIComponent(id)}`;
 }
 
 function categoryClass(name) {
@@ -732,7 +694,7 @@ const backButton = `
 `;
 
 // Главная страница и фильтрация категорий.
-function renderProjects(category) {
+function renderHome(category) {
   const selected = categories.includes(category)
     ? category
     : 'All';
@@ -998,64 +960,145 @@ function renderNotFound() {
         This project or student is unavailable.
       </p>
 
-      <a class="button-link" href="projects.html">
+      <a class="button-link" href="#/projects/All">
         Browse Projects →
       </a>
     </div>
   `;
 }
 
-// Each menu link loads a separate HTML document. Filters use query parameters.
+// История переходов и восстановление положения страницы.
 let restorePosition = null;
+let filterToFocus = null;
+let animationFrame = 0;
+let renderedHash = null;
+
+function savePosition() {
+  history.replaceState(
+    {
+      ...history.state,
+      actApp: true,
+      scrollY: window.scrollY
+    },
+    ''
+  );
+}
+
+function navigate(hash) {
+  savePosition();
+
+  history.pushState(
+    {
+      actApp: true,
+      actDepth: (history.state?.actDepth || 0) + 1,
+      scrollY: 0
+    },
+    '',
+    hash
+  );
+
+  render();
+}
 
 function render() {
-  const parameters = new URLSearchParams(location.search);
-  if (pageName === 'projects') {
-    renderProjects(parameters.get('category'));
-  } else if (pageName === 'project') {
-    const project = projects.find(item => item.id === parameters.get('id'));
-    if (project) renderProject(project);
-    else renderNotFound();
-  } else if (pageName === 'student') {
-    const student = studentsById.get(parameters.get('id'));
-    if (student) renderStudent(student);
-    else renderNotFound();
+  renderedHash = location.hash;
+  cancelAnimationFrame(animationFrame);
+  main.classList.remove('page-enter');
+
+  let parts;
+
+  try {
+    parts = location.hash
+      .replace(/^#\/?/, '')
+      .split('/')
+      .map(decodeURIComponent);
+  } catch {
+    parts = ['invalid'];
+  }
+
+  if (!parts[0] || parts[0] === 'projects') {
+    renderHome(parts[1]);
+  } else if (parts[0] === 'project') {
+    const project = projects.find(item => item.id === parts[1]);
+
+    if (project) {
+      renderProject(project);
+    } else {
+      renderNotFound();
+    }
+  } else if (parts[0] === 'student') {
+    const student = studentsById.get(parts[1]);
+
+    if (student) {
+      renderStudent(student);
+    } else {
+      renderNotFound();
+    }
   } else {
-    main.innerHTML = staticContent;
-    document.title = staticTitle;
+    renderNotFound();
   }
 
   applyLanguage();
   updateActiveNavigation();
   initialiseGallery();
-  main.classList.remove('page-enter');
-  void main.offsetWidth;
-  main.classList.add('page-enter');
-  if (restorePosition !== null) {
-    window.scrollTo(0, restorePosition);
-    restorePosition = null;
+  if (!filterToFocus) {
+    main.classList.remove('page-enter');
+    void main.offsetWidth;
+    main.classList.add('page-enter');
   }
+  animationFrame = requestAnimationFrame(() => {
+    if (filterToFocus) {
+      const filter = [...main.querySelectorAll('[data-category]')]
+        .find(button => button.dataset.category === filterToFocus);
+
+      filter?.focus({ preventScroll: true });
+      filterToFocus = null;
+    } else {
+      main.focus({ preventScroll: true });
+    }
+
+    window.scrollTo(0, restorePosition ?? 0);
+    restorePosition = null;
+  });
 }
 
+// Кнопки и ссылки всех страниц.
 main.addEventListener('click', event => {
   const filter = event.target.closest('[data-category]');
+
   if (filter) {
-    if (filter.getAttribute('aria-pressed') !== 'true') {
-      location.assign(route('projects', filter.dataset.category));
+    if (filter.getAttribute('aria-pressed') === 'true') {
+      return;
     }
+
+    filterToFocus = filter.dataset.category;
+
+    navigate(route('projects', filter.dataset.category));
     return;
   }
 
   if (event.target.closest('[data-back]')) {
-    let previous = null;
-    try { previous = new URL(document.referrer); } catch {}
-    const projectDirectory = new URL('.', location.href).pathname;
-    if (previous && previous.origin === location.origin &&
-        previous.pathname.startsWith(projectDirectory) && history.length > 1) {
+    if (history.state?.actDepth > 0) {
       history.back();
     } else {
-      location.assign('projects.html');
+      navigate('#/projects/All');
     }
+
+    return;
+  }
+
+  const anchor = event.target.closest('a[href^="#/"]');
+
+  if (
+    anchor &&
+    !event.ctrlKey &&
+    !event.metaKey &&
+    !event.shiftKey &&
+    !event.altKey &&
+    event.button === 0
+  ) {
+    event.preventDefault();
+    navigate(anchor.getAttribute('href'));
   }
 });
 
@@ -1065,6 +1108,32 @@ document.querySelector('.skip-link').addEventListener('click', event => {
   main.focus({ preventScroll: true });
   main.scrollIntoView();
 });
+
+history.scrollRestoration = 'manual';
+
+if (!history.state?.actApp) {
+  history.replaceState(
+    {
+      actApp: true,
+      actDepth: 0,
+      scrollY: 0
+    },
+    ''
+  );
+}
+
+window.addEventListener('popstate', () => {
+  restorePosition = history.state?.scrollY ?? 0;
+  render();
+});
+
+window.addEventListener('hashchange', () => {
+  if (location.hash !== renderedHash) {
+    render();
+  }
+});
+
+window.addEventListener('pagehide', savePosition);
 
 function changeLanguage(nextLanguage) {
   language = nextLanguage === 'en' ? 'en' : 'hy';
@@ -1109,17 +1178,20 @@ document.querySelector('.language-picker').addEventListener('focusout', event =>
   if (!event.currentTarget.contains(event.relatedTarget)) closeLanguageMenu();
 });
 
-// All menu links load their local HTML page in this tab.
+// College links open their official pages in this tab.
 const collegeMenuToggle = document.querySelector('#college-menu-toggle');
 const collegeNavigation = document.querySelector('#college-navigation');
 
-// Project detail and student profile pages belong to the Projects section.
+// Highlight the current Projects section.
 function updateActiveNavigation() {
-  const section = ['project', 'student'].includes(pageName) ? 'projects' : pageName;
+  const current = new URL(location.href);
+  const pagePath = path => path.replace(/\/index\.html$/, '/').replace(/\/$/, '');
+
   collegeNavigation.querySelectorAll('.college-nav-item').forEach(link => {
     const destination = new URL(link.href, location.href);
-    const active = destination.origin === location.origin &&
-      destination.pathname.endsWith(`/${section}.html`);
+    const active = destination.origin === current.origin &&
+      pagePath(destination.pathname) === pagePath(current.pathname);
+
     link.classList.toggle('active', active);
     if (active) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
@@ -1155,28 +1227,5 @@ window.addEventListener('focus', updateActiveNavigation);
 document.querySelector('.college-logo').addEventListener('click', () => closeCollegeMenu());
 window.matchMedia('(min-width: 1341px)').addEventListener('change', () => closeCollegeMenu());
 
-// Preserve links shared before the move from hash routes to HTML pages.
-function redirectLegacyRoute() {
-  if (!location.hash.startsWith('#/')) return false;
-  try {
-    const [type, id] = location.hash.slice(2).split('/').map(decodeURIComponent);
-    if (!['projects', 'project', 'student'].includes(type)) return false;
-    location.replace(route(type, id || 'All'));
-    return true;
-  } catch { return false; }
-}
-
-if (!redirectLegacyRoute()) render();
-window.addEventListener('hashchange', redirectLegacyRoute);
-
-// Refresh a cached page after Back when the language changed on another page.
-window.addEventListener('pageshow', event => {
-  if (!event.persisted) return;
-  let savedLanguage = language;
-  try { savedLanguage = localStorage.getItem('actLanguage') || language; } catch {}
-  if (savedLanguage !== language) {
-    language = savedLanguage === 'en' ? 'en' : 'hy';
-    restorePosition = window.scrollY;
-    render();
-  }
-});
+restorePosition = history.state?.scrollY ?? 0;
+render();
