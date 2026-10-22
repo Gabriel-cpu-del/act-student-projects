@@ -1,56 +1,49 @@
-# ACT Student Projects
+# ACT College · Student Projects
 
-A working frontend prototype made with HTML, CSS and JavaScript.
+A static multi-page frontend made with HTML, CSS and JavaScript. No build step or backend.
+
+## Public links
+
+- Home: https://gabriel-cpu-del.github.io/act-student-projects/
+- Student projects: https://gabriel-cpu-del.github.io/act-student-projects/projects.html
 
 ## Files
 
-- `index.html` — page structure and file connections.
-- `style.css` — appearance and responsive layouts.
-- `script.js` — students, projects and website behavior.
-- `assets/` — images and the local font.
+- `index.html` — Home.
+- `projects.html` — project catalogue and category filtering.
+- `project.html?id=campus-companion` — project details and gallery.
+- `student.html?id=aram` — student profile.
+- `admission.html`, `academia.html`, `partners.html`, `about.html`, `contact.html`,
+  `portal.html`, `careers.html`, `store.html` — college information pages.
+- `404.html` — missing-page message for GitHub Pages.
+- `style.css` — shared, unchanged visual styles.
+- `script.js` — sample students/projects, translations, gallery and shared menu behavior.
+- `assets/` — images and the local font, including its license.
 
-## Open the website
+All HTML files use identical header and footer markup. Menu and external links open
+in the same tab. The active menu item follows the current HTML page. Armenian and
+English share the same page URLs; the selected language is stored in the browser.
+Old `#/projects/...`, `#/project/...` and `#/student/...` links redirect to the new pages.
 
-**[Open ACT Student Projects](https://gabriel-cpu-del.github.io/act-student-projects/)**
+## Run locally
 
-This is the public link. Anyone can open it without starting a local server or installing the project.
-Use this link when sharing the website with a teacher or other visitors.
-
-## Local editing (optional)
-
-For development on your own computer, open the project folder in VS Code and run this in its terminal:
+Open this folder in VS Code, then run in its terminal:
 
 ```bash
 python3 -m http.server 8082 --bind 127.0.0.1
 ```
 
-Open the local address printed in the terminal. It works only on your own computer while the server is running; it is not a public sharing link. Save changes and refresh the browser.
+Open the address printed in the terminal. Public sharing uses the GitHub Pages links above.
 
-## Data
+## Content and data
 
-The beginning of `script.js` contains `const students` and `const projects`.
-The records are examples, not real student information.
+The college pages contain short summaries based on https://www.actcollege.am/en
+and its About, Admission, Academia, Partners, Contact and Store sections.
+Each page links to the official source or existing service for full information.
+Portal sign-in, job applications and orders remain on ACT's existing services.
+No local login, payment, submission form, database or API is implemented.
 
-Each project has categories and authors. Each author's `studentId` matches a student's `id`.
-One project can belong to several categories and appear in several student profiles without being copied.
-An author's role, contribution and tools are stored inside that project's `authors` array.
-
-`cover` is the card image. `images` contains additional pictures for the project gallery.
-`year` is the creation year shown on the card. `links` contains public project or profile URLs.
-
-## Features
-
-Category filtering, Project Details, Project Team, Student Profiles, Back navigation,
-an image gallery and layouts for computers, tablets and phones.
-
-## Language
-
-Click the round flag in the header, then choose the other flag to switch between Armenian and English. The current flag shows the active language. The choice is saved in the browser. Routes, category filters and project IDs stay the same. Armenian is the default on a first visit. Sample content translations are in script.js; future real content needs translations supplied by its authors or backend.
-
-## Backend later
-
-Backend, database, login and project submission are not included.
-The backend developer can replace the sample arrays with approved API data while keeping the same fields and ID relationships.
-API loading must finish before rendering pages. Endpoint names and portal rules will be agreed separately.
-
-Rubik's font license is included in `assets/fonts/OFL.txt`.
+At the beginning of `script.js`, `const students` and `const projects` contain demo
+records. Match each project's `authors[].studentId` to a student's `id`.
+Categories support multiple values; projects support multiple authors and images.
+Replace the records with approved data later. Translation strings are in the same file.
