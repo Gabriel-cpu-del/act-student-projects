@@ -317,6 +317,7 @@ const armenianText = {
   'Contact Us': 'Կապ մեզ հետ',
   'Store': 'Խանութ',
   'Apply': 'Գրանցվել',
+  'Close menu': 'Փակել մենյուն',
   'Menu': 'Մենյու',
   'College navigation': 'Քոլեջի նավարկում',
   'ACT College · Student Projects': 'ACT Քոլեջ · Ուսանողների նախագծեր',
@@ -1180,7 +1181,7 @@ document.querySelector('.language-picker').addEventListener('focusout', event =>
   if (!event.currentTarget.contains(event.relatedTarget)) closeLanguageMenu();
 });
 
-// College links open in another tab; the project catalogue stays open here.
+// College links open their official pages in this tab.
 const collegeMenuToggle = document.querySelector('#college-menu-toggle');
 const collegeNavigation = document.querySelector('#college-navigation');
 
@@ -1200,24 +1201,50 @@ function updateActiveNavigation() {
   });
 }
 
+function setCollegeMenu(open, returnFocus = false) {
+  collegeMenuToggle.setAttribute('aria-expanded', String(open));
+  collegeMenuToggle.dataset.translationLabel = open ? 'Close menu' : 'Menu';
+  collegeMenuToggle.setAttribute('aria-label', translated(collegeMenuToggle.dataset.translationLabel));
+  collegeNavigation.classList.toggle('is-open', open);
+  document.body.classList.toggle('college-menu-open', open);
+  main.inert = open;
+  document.querySelector('footer').inert = open;
+  if (open) {
+    document.documentElement.style.setProperty('--college-menu-top', `${document.querySelector('.college-header-inner').offsetHeight}px`);
+    closeLanguageMenu();
+    collegeNavigation.querySelector('a').focus({preventScroll: true});
+  } else {
+    closeLanguageMenu();
+    if (returnFocus) collegeMenuToggle.focus({preventScroll: true});
+  }
+}
+
 function closeCollegeMenu(returnFocus = false) {
-  collegeMenuToggle.setAttribute('aria-expanded', 'false');
-  collegeNavigation.classList.remove('is-open');
-  if (returnFocus) collegeMenuToggle.focus();
+  setCollegeMenu(false, returnFocus);
 }
 
 collegeMenuToggle.addEventListener('click', () => {
-  const open = collegeMenuToggle.getAttribute('aria-expanded') !== 'true';
-  collegeMenuToggle.setAttribute('aria-expanded', String(open));
-  collegeNavigation.classList.toggle('is-open', open);
+  setCollegeMenu(collegeMenuToggle.getAttribute('aria-expanded') !== 'true', true);
 });
 document.querySelector('.college-header').addEventListener('keydown', event => {
-  if (event.key === 'Escape' && collegeMenuToggle.getAttribute('aria-expanded') === 'true') {
+  if (collegeMenuToggle.getAttribute('aria-expanded') !== 'true') return;
+  if (event.key === 'Escape') {
+    event.preventDefault();
     closeCollegeMenu(true);
+  } else if (event.key === 'Tab') {
+    const controls = [...event.currentTarget.querySelectorAll('a, button')]
+      .filter(element => element.getClientRects().length && !element.disabled);
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault(); first.focus();
+    }
   }
 });
 document.addEventListener('click', event => {
-  if (!event.target.closest('.college-header')) closeCollegeMenu();
+  if (!event.composedPath().includes(document.querySelector('.college-header'))) closeCollegeMenu();
 });
 collegeNavigation.addEventListener('click', event => {
   if (event.target.closest('a')) {
@@ -1227,7 +1254,12 @@ collegeNavigation.addEventListener('click', event => {
 });
 window.addEventListener('focus', updateActiveNavigation);
 document.querySelector('.college-logo').addEventListener('click', () => closeCollegeMenu());
-window.matchMedia('(min-width: 1341px)').addEventListener('change', () => closeCollegeMenu());
+window.matchMedia('(min-width: 1701px)').addEventListener('change', () => closeCollegeMenu());
+window.addEventListener('resize', () => {
+  if (collegeMenuToggle.getAttribute('aria-expanded') === 'true') {
+    document.documentElement.style.setProperty('--college-menu-top', `${document.querySelector('.college-header-inner').offsetHeight}px`);
+  }
+});
 
 restorePosition = history.state?.scrollY ?? 0;
 render();

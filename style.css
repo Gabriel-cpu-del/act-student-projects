@@ -869,26 +869,39 @@ h1, h2, h3 { letter-spacing: -0.025em; font-weight: 600; }
 .menu-icon span { display: block; width: 22px; height: 2px; background: currentColor; }
 .hero { border-top: 1px solid rgba(255,255,255,.2); background-position: center 28%; }
 .hero h1, .hero .eyebrow, .hero p:last-child { text-shadow: 0 1px 8px rgba(0,0,0,.55); }
-@media (min-width: 1341px) and (max-width: 1440px) {
-  .college-navigation { column-gap: 6px; }
-}
-@media (max-width: 1340px) {
-  .college-header-inner { display: flex; flex-wrap: wrap; gap: 12px; width: calc(100% - 48px); min-height: 76px; padding-block: 10px; }
+/* Collapse before the translated navigation becomes crowded. */
+.college-header .flag-circle,
+.college-header #language-option .flag-circle { width: 32px; height: 32px; }
+.menu-icon span { transition: transform .3s ease, opacity .3s ease; }
+#college-menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+#college-menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2) { opacity: 0; }
+#college-menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+body.college-menu-open { overflow: hidden; padding-top: var(--college-menu-top, 76px); }
+@media (max-width: 1700px) {
+  .college-header-inner { display: flex; flex-wrap: nowrap; gap: 12px; width: calc(100% - 48px); min-height: 76px; padding-block: 10px; }
   .college-logo { margin-right: auto; }
   .college-logo svg { width: 112px; }
-  #college-menu-toggle { display: inline-flex; }
-  .college-navigation { display: none; order: 4; flex: 0 0 100%; flex-wrap: wrap; justify-content: flex-start; gap: 8px 24px; padding: 16px 0 8px; border-top: 1px solid #333; }
-  .college-navigation.is-open { display: flex; }
-  .college-nav-item { justify-content: flex-start; font-size: 15px; text-align: left; }
-  .college-apply { min-height: 44px; padding: 8px 12px; font-size: 15px; }
+  .college-header .language-picker { order: 2; z-index: 2; }
+  #college-menu-toggle { display: inline-flex; order: 3; z-index: 2; }
+  .college-navigation { display: none; }
+  .college-menu-open .college-header { position: fixed; inset: 0; z-index: 1000; }
+  .college-menu-open .college-header-inner { position: relative; z-index: 1; }
+  .college-navigation.is-open {
+    display: flex; position: fixed; inset: var(--college-menu-top, 76px) 0 0;
+    flex-direction: column; align-items: center; justify-content: flex-start;
+    gap: 20px; padding: 24px 24px max(24px, env(safe-area-inset-bottom));
+    margin: 0; overflow-y: auto; overscroll-behavior: contain; background: #000;
+  }
+  .college-navigation.is-open > a { flex-shrink: 0; }
+  .college-nav-item { justify-content: center; text-align: center; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+  .college-apply { margin-top: 4px; }
+}
+@media (max-width: 1340px) {
+  .college-nav-item { font-size: 15px; }
 }
 @media (max-width: 600px) {
   .college-header-inner { width: calc(100% - 32px); min-height: 72px; padding-block: 10px; }
   .college-logo svg { width: 100px; }
-  .college-navigation { display: none; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; }
-  .college-navigation.is-open { display: grid; }
-  .college-nav-item { white-space: normal; overflow-wrap: anywhere; }
-  .college-apply { grid-column: 1 / -1; justify-self: start; margin-top: 8px; }
 }
 
 
