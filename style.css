@@ -878,15 +878,16 @@ h1, h2, h3 { letter-spacing: -0.025em; font-weight: 600; }
 #college-menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 body.college-menu-open { overflow: hidden; padding-top: var(--college-menu-top, 76px); }
 @media (max-width: 1700px) {
-  .college-header-inner { display: flex; flex-wrap: nowrap; gap: 11px; width: calc(100% - 48px); min-height: 76px; padding-block: 10px; }
+  .college-header-inner { display: flex; flex-wrap: nowrap; gap: 15px; width: calc(100% - 80px); min-height: 76px; padding-block: 10px; }
   .college-logo { margin-right: auto; }
-  .college-logo svg { width: 112px; }
+  .college-header { border-bottom: 0; }
+  .college-logo svg { width: 92px; }
   .college-header .language-picker { order: 2; z-index: 2; }
   .college-header #language-toggle,
   .college-header #language-option { width: 24px; height: 24px; padding: 0; }
   .college-header .flag-circle,
   .college-header #language-option .flag-circle { width: 24px; height: 24px; }
-  .college-header .language-menu { width: 24px; }
+  .college-header .language-menu { width: 40px; padding: 8px; top: 42.5px; right: -6px; border-radius: 4px; box-shadow: none; }
 
   #college-menu-toggle { display: inline-flex; order: 3; z-index: 2; }
   .college-navigation { display: none; }
@@ -907,7 +908,8 @@ body.college-menu-open { overflow: hidden; padding-top: var(--college-menu-top, 
 }
 @media (max-width: 600px) {
   .college-header-inner { width: calc(100% - 48px); min-height: 76px; padding-block: 10px; }
-  .college-logo svg { width: 100px; }
+  .college-header-inner { gap: 11px; }
+  .college-logo svg { width: 92px; }
 }
 
 
