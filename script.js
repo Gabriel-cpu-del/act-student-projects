@@ -319,6 +319,10 @@ const armenianText = {
   'Apply': 'Գրանցվել',
   'Close menu': 'Փակել մենյուն',
   'Menu': 'Մենյու',
+  'Privacy policy': 'Գաղտնիության քաղաքականություն',
+  'Terms': 'Պայմաններ',
+  'Social media': 'Սոցիալական ցանցեր',
+  'Footer navigation': 'Ստորին նավարկում',
   'College navigation': 'Քոլեջի նավարկում',
   'ACT College · Student Projects': 'ACT Քոլեջ · Ուսանողների նախագծեր',
   'Student Projects': 'Ուսանողների նախագծեր',
@@ -482,6 +486,7 @@ function updateLanguageButton() {
   option.dataset.language = other;
   option.setAttribute('aria-label', other === 'hy' ? 'Հայերեն' : 'English');
   option.title = other === 'hy' ? 'Հայերեն' : 'English';
+  updateFooterLanguage();
 }
 
 function closeLanguageMenu(returnFocus = false) {
@@ -1138,7 +1143,8 @@ window.addEventListener('hashchange', () => {
 
 window.addEventListener('pagehide', savePosition);
 
-function changeLanguage(nextLanguage) {
+function changeLanguage(nextLanguage, focusTarget = '#language-toggle') {
+  const distanceFromBottom = document.documentElement.scrollHeight - innerHeight - scrollY;
   language = nextLanguage === 'en' ? 'en' : 'hy';
   closeLanguageMenu();
   try { localStorage.setItem('actLanguage', language); } catch {}
@@ -1149,7 +1155,10 @@ function changeLanguage(nextLanguage) {
   requestAnimationFrame(() => {
     const track = main.querySelector('.gallery-track');
     if (track) track.scrollTo({left: imageIndex * track.clientWidth, behavior: 'instant'});
-    document.querySelector('#language-toggle').focus({preventScroll:true});
+    if (focusTarget === '#footer-language-toggle') {
+      window.scrollTo(0, document.documentElement.scrollHeight - innerHeight - distanceFromBottom);
+    }
+    document.querySelector(focusTarget).focus({preventScroll:true});
   });
 }
 
@@ -1259,6 +1268,57 @@ window.addEventListener('resize', () => {
   if (collegeMenuToggle.getAttribute('aria-expanded') === 'true') {
     document.documentElement.style.setProperty('--college-menu-top', `${document.querySelector('.college-header-inner').offsetHeight}px`);
   }
+});
+
+
+// Both language pickers share the existing language and translation functions.
+function updateFooterLanguage() {
+  const other = language === 'hy' ? 'en' : 'hy';
+  const toggle = document.querySelector('#footer-language-toggle');
+  const option = document.querySelector('#footer-language-option');
+  const flag = code => `<span class="flag-circle">${languageFlag(code)}</span><span class="footer-language-name">${code === 'hy' ? 'Arm' : 'Eng'}</span>`;
+  toggle.innerHTML = flag(language) + '<svg class="footer-language-arrow" aria-hidden="true" viewBox="0 0 10 7"><path d="M5.75927 6.1142C5.36018 6.57981 4.63985 6.57981 4.24076 6.1142L0.414977 1.65079C-0.141028 1.00212 0.319881 0 1.17423 0H8.82579C9.68015 0 10.1411 1.00212 9.58505 1.65079L5.75927 6.1142Z" fill="#05060F"/></svg>';
+  toggle.setAttribute('aria-label', language === 'hy' ? 'Հայերեն․ փոխել լեզուն' : 'English: change language');
+  option.innerHTML = flag(other);
+  option.dataset.language = other;
+  option.setAttribute('aria-label', other === 'hy' ? 'Հայերեն' : 'English');
+  const year = new Date().getFullYear();
+  document.querySelector('#footer-copyright').textContent = language === 'hy'
+    ? `© Հեղինակային իրավունք GITC. Բոլոր իրավունքները պաշտպանված են: ${year}`
+    : `© Copyright GITC. All Rights Reserved. ${year}`;
+}
+function closeFooterLanguageMenu(returnFocus = false) {
+  document.querySelector('#footer-language-menu').hidden = true;
+  document.querySelector('#footer-language-toggle').setAttribute('aria-expanded', 'false');
+  if (returnFocus) document.querySelector('#footer-language-toggle').focus({preventScroll:true});
+}
+document.querySelector('#footer-language-toggle').addEventListener('click', () => {
+  const menu = document.querySelector('#footer-language-menu');
+  const open = menu.hidden;
+  closeLanguageMenu();
+  menu.hidden = !open;
+  document.querySelector('#footer-language-toggle').setAttribute('aria-expanded', String(open));
+});
+document.querySelector('#footer-language-option').addEventListener('click', event => {
+  const next = event.currentTarget.dataset.language;
+  closeFooterLanguageMenu();
+  changeLanguage(next, '#footer-language-toggle');
+});
+document.querySelector('.footer-language-picker').addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    event.preventDefault(); event.stopPropagation(); closeFooterLanguageMenu(true);
+  } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+    event.preventDefault();
+    document.querySelector('#footer-language-menu').hidden = false;
+    document.querySelector('#footer-language-toggle').setAttribute('aria-expanded', 'true');
+    document.querySelector('#footer-language-option').focus();
+  }
+});
+document.querySelector('.footer-language-picker').addEventListener('focusout', event => {
+  if (!event.currentTarget.contains(event.relatedTarget)) closeFooterLanguageMenu();
+});
+document.addEventListener('click', event => {
+  if (!event.composedPath().includes(document.querySelector('.footer-language-picker'))) closeFooterLanguageMenu();
 });
 
 restorePosition = history.state?.scrollY ?? 0;

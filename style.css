@@ -935,3 +935,44 @@ body.college-menu-open { overflow: hidden; padding-top: var(--college-menu-top, 
     overflow-wrap: anywhere;
   }
 }
+
+/* ACT College footer, shared by the catalogue, projects and student profiles. */
+.college-footer { background: #000; color: #fff; margin-top: 48px; }
+.college-footer-inner { width: calc(100% - 80px); max-width: 1920px; margin-inline: auto; padding-block: 20px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.footer-brand { min-width: 0; }
+.footer-logo { display: inline-block; line-height: 0; }
+.footer-logo svg { display: block; width: 92px; height: 44px; }
+.footer-language-picker { position: relative; width: max-content; margin-top: 16px; }
+#footer-language-toggle, #footer-language-option { display: flex; align-items: center; border: 0; padding: 0; background: transparent; color: #fff; font: 16px/16px Arial, sans-serif; }
+.college-footer .flag-circle { width: 24px; height: 24px; flex-shrink: 0; }
+.footer-language-name { margin-left: 8px; }
+.footer-language-arrow { margin-left: 15.17px; width: 10px; height: 7px; }
+#footer-language-menu { position: absolute; z-index: 20; bottom: calc(100% + 8px); left: 0; min-width: 96px; padding: 8px; border-radius: 4px; background: #fff; }
+#footer-language-menu[hidden] { display: none; }
+#footer-language-option { width: 100%; color: #111; min-height: 24px; }
+.footer-social { display: flex; align-items: center; gap: 8px; margin-block: 16px; }
+.footer-social a, .footer-social svg { display: block; width: 24px; height: 24px; }
+#footer-copyright { margin: 0; font-size: 16px; font-weight: 400; line-height: 26px; overflow-wrap: anywhere; }
+.footer-links { display: flex; justify-content: space-between; flex: 0 0 327px; gap: 27px; }
+.footer-links > div { display: flex; flex-direction: column; gap: 24px; width: 150px; }
+.footer-links a { color: rgba(255,255,255,.596); font: 14px/20px Arial, sans-serif; text-decoration: none; transition: color .3s ease, transform .3s ease; transform-origin: left center; }
+.footer-links a:hover, .footer-links a:focus-visible { color: #fff; text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .footer-links a:hover { transform: scale(1.1); } }
+.footer-contact { display: flex; flex: 0 0 205px; flex-direction: column; gap: 15px; margin: 0; font-style: normal; }
+.footer-contact a { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 14px; line-height: 24px; text-decoration: none; }
+.footer-contact a:hover { text-decoration: underline; }
+.footer-contact-icon { display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; flex-shrink: 0; }
+.footer-contact-icon svg { max-width: 24px; max-height: 24px; }
+.footer-contact-icon svg[viewBox="0 0 59 59"], .footer-contact-icon svg[viewBox="0 0 65 65"] { width: 24px; height: 24px; }
+@media (max-width: 1100px) {
+  .college-footer-inner { flex-direction: column; align-items: flex-start; gap: 0; }
+  .footer-brand { width: 100%; }
+  .footer-links { flex-basis: auto; width: 327px; max-width: 100%; margin-block: 34px; }
+  .footer-contact { flex-basis: auto; }
+}
+@media (max-width: 600px) {
+  .college-footer-inner { width: calc(100% - 48px); }
+  .footer-links { gap: 20px; }
+  .footer-links > div { width: calc((100% - 20px) / 2); min-width: 0; }
+  .footer-links a, .footer-contact a { overflow-wrap: anywhere; }
+}
