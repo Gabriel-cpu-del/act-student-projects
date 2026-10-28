@@ -1199,7 +1199,7 @@ function updateActiveNavigation() {
   const current = new URL(location.href);
   const pagePath = path => path.replace(/\/index\.html$/, '/').replace(/\/$/, '');
 
-  collegeNavigation.querySelectorAll('.college-nav-item').forEach(link => {
+  document.querySelectorAll('.college-nav-item, .footer-links a').forEach(link => {
     const destination = new URL(link.href, location.href);
     const active = destination.origin === current.origin &&
       pagePath(destination.pathname) === pagePath(current.pathname);

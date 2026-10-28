@@ -956,7 +956,7 @@ body.college-menu-open { overflow: hidden; padding-top: var(--college-menu-top, 
 .footer-links { display: flex; justify-content: space-between; flex: 0 0 327px; gap: 27px; }
 .footer-links > div { display: flex; flex-direction: column; gap: 24px; width: 150px; }
 .footer-links a { color: rgba(255,255,255,.596); font: 14px/20px Arial, sans-serif; text-decoration: none; transition: color .3s ease, transform .3s ease; transform-origin: left center; }
-.footer-links a:hover, .footer-links a:focus-visible { color: #fff; text-decoration: none; }
+.footer-links a.active, .footer-links a:hover, .footer-links a:focus-visible { color: #fff; text-decoration: none; }
 @media (hover: hover) and (pointer: fine) { .footer-links a:hover { transform: scale(1.1); } }
 .footer-contact { display: flex; flex: 0 0 205px; flex-direction: column; gap: 15px; margin: 0; font-style: normal; }
 .footer-contact a { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 14px; line-height: 24px; text-decoration: none; }
